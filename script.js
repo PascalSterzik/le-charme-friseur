@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Friseursalon Le Charme — Premium JavaScript
+   Friseursalon Le Charme: Premium JavaScript
    ========================================================================== */
 
 // Mobile Navigation
@@ -139,6 +139,25 @@ if (contactForm) {
         }, 1200);
     });
 }
+
+// Salon hair strand drip animation trigger
+const salonHairStrands = document.getElementById('salonHairStrands');
+if (salonHairStrands) {
+    const strandObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                salonHairStrands.classList.add('salon-hair-strands-visible');
+                strandObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    strandObserver.observe(salonHairStrands);
+}
+
+// Scissors divider reveal
+document.querySelectorAll('.scissors-divider').forEach(el => {
+    revealObserver.observe(el);
+});
 
 // Back to Top Button
 const backToTop = document.getElementById('backToTop');
