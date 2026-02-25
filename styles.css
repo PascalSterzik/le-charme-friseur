@@ -495,6 +495,7 @@ section { padding: 100px 0; }
     color: white;
     position: relative;
     z-index: 2;
+    overflow: hidden;
 }
 .cta-banner h2 { color: white; margin-bottom: 16px; font-size: 2.2rem; }
 .cta-banner p { color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
@@ -992,11 +993,20 @@ section { padding: 100px 0; }
     display: inline-block;
     opacity: 0.85;
 }
-.hair-divider .divider-img {
-    max-width: 100%;
+/* Hair overlay inside CTA banner */
+.cta-hair-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    opacity: 0.7;
-    max-height: 60px;
-    object-fit: cover;
+    height: auto;
+    opacity: 0.65;
+    z-index: 1;
+    pointer-events: none;
+    display: block;
+}
+.cta-banner .container {
+    position: relative;
+    z-index: 2;
 }
 
