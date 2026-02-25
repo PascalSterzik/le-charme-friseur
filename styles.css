@@ -978,3 +978,25 @@ section { padding: 100px 0; }
     animation-play-state: paused;
 }
 
+/* Section Dividers */
+.section-divider {
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    line-height: 0;
+}
+.divider-img {
+    max-width: 400px;
+    width: 60%;
+    height: auto;
+    display: inline-block;
+    opacity: 0.85;
+}
+.hair-divider .divider-img {
+    max-width: 100%;
+    width: 100%;
+    opacity: 0.7;
+    max-height: 60px;
+    object-fit: cover;
+}
+
