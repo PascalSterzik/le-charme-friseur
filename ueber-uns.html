@@ -4,16 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Über Uns · Friseursalon Le Charme in Zeltingen-Rachtig</title>
-    <meta name="description" content="Lernen Sie Antonia Zemma kennen · die Inhaberin von Friseursalon Le Charme. Erfahrung, Leidenschaft und ein neues Zuhause in Zeltingen-Rachtig.">
+    <meta name="description" content="Lernen Sie Antonia Zemma kennen, die Inhaberin von Friseursalon Le Charme. Jahrelange Erfahrung, persönliche Beratung und ein neues Zuhause in Zeltingen-Rachtig an der Mosel.">
+    <meta name="keywords" content="Friseur Zeltingen-Rachtig, Antonia Zemma, Friseursalon Le Charme, Über Uns, Friseur Mosel, Friseur Wittlich">
+    <meta name="author" content="Friseursalon Le Charme · Antonia Zemma">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://le-charme-friseur.vercel.app/ueber-uns.html">
-    <meta property="og:title" content="Über Uns · Friseursalon Le Charme">
-    <meta property="og:description" content="Antonia Zemma und ihr Team · mit Erfahrung, Leidenschaft und Charme.">
-    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Über Uns · Friseursalon Le Charme in Zeltingen-Rachtig">
+    <meta property="og:description" content="Antonia Zemma und Friseursalon Le Charme · Erfahrung, Leidenschaft und persönliche Beratung in Zeltingen-Rachtig.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://le-charme-friseur.vercel.app/ueber-uns.html">
+    <meta property="og:image" content="https://le-charme-friseur.vercel.app/images/friseursalon-le-charme-ueber-uns.jpg">
+    <meta property="og:locale" content="de_DE">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "@id": "https://le-charme-friseur.vercel.app/ueber-uns.html",
+                "url": "https://le-charme-friseur.vercel.app/ueber-uns.html",
+                "name": "Über Uns · Friseursalon Le Charme in Zeltingen-Rachtig",
+                "description": "Lernen Sie Antonia Zemma kennen, die Inhaberin von Friseursalon Le Charme. Jahrelange Erfahrung, persönliche Beratung und ein neues Zuhause in Zeltingen-Rachtig.",
+                "isPartOf": {
+                    "@id": "https://le-charme-friseur.vercel.app"
+                },
+                "about": {
+                    "@type": "HairSalon",
+                    "name": "Friseursalon Le Charme",
+                    "url": "https://le-charme-friseur.vercel.app"
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Startseite",
+                        "item": "https://le-charme-friseur.vercel.app/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Über Uns",
+                        "item": "https://le-charme-friseur.vercel.app/ueber-uns.html"
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
+
 <!-- Scroll Progress Bar -->
 <div class="scroll-progress"></div>
 
@@ -30,12 +83,25 @@
             <a href="ueber-uns.html" class="nav-link active">Über Uns</a>
             <a href="kontakt.html" class="nav-link">Kontakt</a>
         </nav>
+        <a href="tel:+4965325004253" class="header-phone">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            06532 500-4253
+        </a>
         <a href="kontakt.html" class="header-cta btn btn-accent">Termin vereinbaren</a>
         <button class="hamburger" id="hamburger" aria-label="Menü">
             <span></span><span></span><span></span>
         </button>
     </div>
 </header>
+
+<!-- Mobile Sticky Bar -->
+<div class="mobile-sticky-bar">
+    <a href="tel:+4965325004253" class="btn btn-outline" style="flex: 1; text-align: center; font-size: 0.85rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 4px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        Anrufen
+    </a>
+    <a href="kontakt.html" class="btn btn-accent" style="flex: 1; text-align: center; font-size: 0.85rem;">Termin vereinbaren</a>
+</div>
 
 <!-- Page Hero -->
 <section class="page-hero">
@@ -59,7 +125,8 @@
             <div class="about-image" style="height: 550px;">
                 <img src="images/antonia.jpg" alt="Antonia Zemma · Inhaberin Friseursalon Le Charme" style="height: 100%; object-fit: cover;">
             </div>
-            <div>
+            <div style="position: relative; overflow: hidden;">
+                <img src="images/decoratives/gold-comb-accent.png" alt="" style="position: absolute; left: -40px; bottom: 20px; width: 120px; opacity: 0.12; transform: rotate(-15deg); z-index: 0; pointer-events: none;">
                 <span class="section-label">Unsere Geschichte</span>
                 <h2 class="section-title">Von Wittlich an die Mosel</h2>
                 <p>Friseursalon Le Charme hat eine lange Geschichte · und ein neues Kapitel. Nach vielen erfolgreichen Jahren an der Friedrichstraße in Wittlich hat sich Inhaberin Antonia Zemma entschieden, ihren Salon in die malerische Kunibertstraße in Zeltingen-Rachtig zu verlegen.</p>
@@ -70,6 +137,10 @@
     </div>
 </section>
 
+<!-- Scissors Divider -->
+<div class="section-divider">
+    <img src="images/decoratives/scissors-divider-gold.png" alt="" class="divider-img">
+</div>
 
 <!-- Values -->
 <section class="section-alt">
@@ -115,8 +186,26 @@
     <div class="container">
         <div class="text-center fade-in" style="max-width: 700px; margin: 0 auto;">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="var(--accent)" stroke="none" style="margin-bottom: 24px; opacity: 0.5;"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg>
-            <h2 style="font-style: italic; font-weight: 500; font-size: 1.8rem; margin-bottom: 20px;">Schönes Haar beginnt mit Verständnis. Deshalb nehme ich mir für jede Kundin Zeit · weil kein Haar wie das andere ist.</h2>
+            <h2 style="font-style: italic; font-weight: 500; font-size: 1.8rem; margin-bottom: 20px; color: white;">Schönes Haar beginnt mit Verständnis. Deshalb nehme ich mir für jede Kundin Zeit · weil kein Haar wie das andere ist und jeder Mensch seine eigene Zeit verdient.</h2>
             <p style="font-size: 0.9rem; color: var(--accent);">Antonia Zemma, Inhaberin</p>
+        </div>
+    </div>
+</section>
+
+<!-- Salon Interior Section -->
+<section>
+    <div class="container">
+        <div class="grid-2 fade-in">
+            <div>
+                <span class="section-label">Unser Salon</span>
+                <h2 class="section-title">Ein Ort zum Wohlfühlen</h2>
+                <p>Mit dem Umzug nach Zeltingen-Rachtig hat Le Charme ein neues Zuhause gefunden · und eine Atmosphäre, die genauso einladend ist wie die Arbeit, die hier geleistet wird.</p>
+                <p style="margin-top: 16px;">Der Salon in der Kunibertstraße verbindet modernes Design mit einer warmen, persönlichen Ausstrahlung. Helle Räume, sorgfältig ausgewählte Details und ein Ambiente, in dem Sie sich vom ersten Moment an entspannen können.</p>
+                <p style="margin-top: 16px;">Ob Sie für einen schnellen Schnitt kommen oder sich eine ausführliche Farbberatung gönnen · bei uns haben Sie die Ruhe und den Raum, den Sie brauchen.</p>
+            </div>
+            <div style="border-radius: var(--radius-lg); height: 450px; overflow: hidden;">
+                <img src="images/salon-innenraum-le-charme-zeltingen.jpg" alt="Salon Innenraum · Friseursalon Le Charme in Zeltingen-Rachtig" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
         </div>
     </div>
 </section>
@@ -128,6 +217,7 @@
 
 <!-- CTA Banner -->
 <section class="cta-banner">
+    <img src="images/decoratives/hair-cut-transition.png" alt="" class="cta-hair-overlay">
     <div class="container">
         <h2>Lernen Sie uns persönlich kennen</h2>
         <p>Wir freuen uns darauf, Sie in unserem Salon in Zeltingen-Rachtig zu begrüßen.</p>
@@ -141,10 +231,10 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <a href="index.html" class="footer-logo"><img src="images/le-charme-logo-bg.png" alt="Friseursalon Le Charme" class="footer-logo-img"></a>
-                <p class="footer-about">Ihr Friseursalon in Zeltingen-Rachtig. Persönliche Beratung, professionelle Techniken und Ergebnisse, die begeistern.</p>
+                <p class="footer-about">Ihr Friseursalon in Zeltingen-Rachtig. Persönliche Beratung, professionelle Techniken und Ergebnisse, die begeistern · mit Charme und Leidenschaft.</p>
                 <div class="footer-social">
                     <a href="https://www.facebook.com/people/Friseursalon-Le-Charme/100030283065543/" target="_blank" rel="noopener" aria-label="Facebook" class="social-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     </a>
                 </div>
             </div>
@@ -166,8 +256,13 @@
             <div class="footer-col footer-contact">
                 <h4>Kontakt</h4>
                 <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                     Kunibertstraße 15<br><span style="margin-left: 24px;">54492 Zeltingen-Rachtig</span>
+                </p>
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    <a href="tel:+4965325004253">06532 500-4253</a><br>
+                    <span style="margin-left: 24px;"><a href="tel:+491776237998">0177 623 7998</a></span>
                 </p>
             </div>
         </div>

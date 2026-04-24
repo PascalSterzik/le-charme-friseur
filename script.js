@@ -1,171 +1,215 @@
-/* ==========================================================================
-   Friseursalon Le Charme: Premium JavaScript
-   ========================================================================== */
+/* ============================================================
+   Friseursalon Le Charme - Premium JavaScript
+   ============================================================ */
 
-// Mobile Navigation
-const hamburger = document.getElementById('hamburger');
-const nav = document.getElementById('nav');
-if (hamburger) {
-    hamburger.addEventListener('click', () => {
-        nav.classList.toggle('open');
-        hamburger.classList.toggle('active');
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ── References ──────────────────────────────────────────────
+  const hamburger      = document.getElementById('hamburger');
+  const nav            = document.getElementById('nav');
+  const header         = document.getElementById('header');
+  const scrollProgress = document.querySelector('.scroll-progress');
+  const backToTop      = document.getElementById('backToTop');
+  const mobileBar      = document.querySelector('.mobile-sticky-bar');
+
+  // ── 1. Mobile Navigation Toggle ────────────────────────────
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      nav.classList.toggle('open');
+      hamburger.classList.toggle('active');
     });
-    nav.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('open');
-            hamburger.classList.remove('active');
-        });
+
+    // Close on nav link click
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        hamburger.classList.remove('active');
+      });
     });
+
+    // Close on outside click
     document.addEventListener('click', (e) => {
-        if (nav.classList.contains('open') && !nav.contains(e.target) && !hamburger.contains(e.target)) {
-            nav.classList.remove('open');
-            hamburger.classList.remove('active');
-        }
+      if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+        nav.classList.remove('open');
+        hamburger.classList.remove('active');
+      }
     });
-}
+  }
 
-// Header: shadow on scroll + hide-on-scroll-down / show-on-scroll-up
-const header = document.getElementById('header');
-const scrollProgress = document.querySelector('.scroll-progress');
-let lastScroll = 0;
-let ticking = false;
+  // ── 2-4. Unified Scroll Handler (rAF) ─────────────────────
+  let lastScrollY = 0;
+  let ticking     = false;
 
-function onScroll() {
-    const currentScroll = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-
-    // Header shadow
-    if (header) {
-        header.classList.toggle('scrolled', currentScroll > 20);
-
-        // Hide/show nav on scroll direction
-        if (currentScroll > 100) {
-            if (currentScroll > lastScroll + 5) {
-                header.classList.add('nav-hidden');
-                // Close mobile menu when header hides
-                if (nav && nav.classList.contains('open')) {
-                    nav.classList.remove('open');
-                    if (hamburger) hamburger.classList.remove('active');
-                }
-            } else if (currentScroll < lastScroll - 5) {
-                header.classList.remove('nav-hidden');
-            }
-        } else {
-            header.classList.remove('nav-hidden');
-        }
-    }
+  function onScroll() {
+    const scrollY    = window.scrollY;
+    const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPct  = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
 
     // Scroll progress bar
-    if (scrollProgress && docHeight > 0) {
-        const progress = (currentScroll / docHeight) * 100;
-        scrollProgress.style.width = progress + '%';
+    if (scrollProgress) {
+      scrollProgress.style.width = scrollPct + '%';
     }
 
-    lastScroll = currentScroll;
+    // Header .scrolled class
+    if (header) {
+      if (scrollY > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      // Hide/show on scroll direction (only past 100px)
+      if (scrollY > 100) {
+        const delta = scrollY - lastScrollY;
+        if (delta > 5) {
+          // Scrolling down
+          header.classList.add('nav-hidden');
+          // Close mobile menu when header hides
+          if (nav) nav.classList.remove('open');
+          if (hamburger) hamburger.classList.remove('active');
+        } else if (delta < -5) {
+          // Scrolling up
+          header.classList.remove('nav-hidden');
+        }
+      } else {
+        header.classList.remove('nav-hidden');
+      }
+    }
+
+    // Back to top button
+    if (backToTop) {
+      if (scrollY > 400) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+
+    // Mobile sticky bar
+    if (mobileBar) {
+      if (scrollY < 200) {
+        mobileBar.classList.remove('visible');
+      } else {
+        mobileBar.classList.add('visible');
+      }
+    }
+
+    lastScrollY = scrollY;
     ticking = false;
-}
+  }
 
-window.addEventListener('scroll', () => {
+  window.addEventListener('scroll', () => {
     if (!ticking) {
-        requestAnimationFrame(onScroll);
-        ticking = true;
+      requestAnimationFrame(onScroll);
+      ticking = true;
     }
-}, { passive: true });
+  }, { passive: true });
 
-// Scroll reveal with stagger support
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+  // Run once on load
+  onScroll();
 
-            // Stagger children
-            if (entry.target.classList.contains('stagger-parent')) {
-                const children = entry.target.children;
-                Array.from(children).forEach((child, i) => {
-                    child.style.transitionDelay = (i * 0.12) + 's';
-                });
-            }
-
-            revealObserver.unobserve(entry.target);
-        }
+  // ── 5. IntersectionObserver: Fade-in & Stagger ─────────────
+  const fadeObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
-}, { threshold: 0.1 });
+  }, { threshold: 0.1 });
 
-document.querySelectorAll('.fade-in, .stagger-parent').forEach(el => revealObserver.observe(el));
+  document.querySelectorAll('.fade-in').forEach((el) => fadeObserver.observe(el));
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-        const id = link.getAttribute('href');
-        if (id === '#') return;
-        const target = document.querySelector(id);
-        if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    });
-});
-
-// FAQ Accordion (if present)
-document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', () => {
-        const item = question.parentElement;
-        const isOpen = item.classList.contains('open');
-        // Close all
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        // Toggle clicked
-        if (!isOpen) item.classList.add('open');
-    });
-});
-
-// Contact form (if present)
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = contactForm.querySelector('button[type="submit"]');
-        const originalText = btn.textContent;
-        btn.textContent = 'Wird gesendet...';
-        btn.disabled = true;
-        setTimeout(() => {
-            btn.textContent = 'Nachricht gesendet ✓';
-            btn.style.background = 'var(--accent)';
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.disabled = false;
-                btn.style.background = '';
-                contactForm.reset();
-            }, 3000);
-        }, 1200);
-    });
-}
-
-// Salon hair strand drip animation trigger
-const salonHairStrands = document.getElementById('salonHairStrands');
-if (salonHairStrands) {
-    const strandObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                salonHairStrands.classList.add('salon-hair-strands-visible');
-                strandObserver.unobserve(entry.target);
-            }
+  const staggerObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        Array.from(entry.target.children).forEach((child, i) => {
+          child.style.transitionDelay = (i * 0.12) + 's';
         });
-    }, { threshold: 0.3 });
-    strandObserver.observe(salonHairStrands);
-}
-
-// Scissors divider reveal
-document.querySelectorAll('.scissors-divider').forEach(el => {
-    revealObserver.observe(el);
-});
-
-// Back to Top Button
-const backToTop = document.getElementById('backToTop');
-if (backToTop) {
-    window.addEventListener('scroll', () => {
-        backToTop.classList.toggle('visible', window.scrollY > 400);
-    }, { passive: true });
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        observer.unobserve(entry.target);
+      }
     });
-}
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.stagger-parent').forEach((el) => staggerObserver.observe(el));
+
+  // ── 6. Smooth Scroll for Anchor Links ──────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const targetId = anchor.getAttribute('href');
+      if (targetId === '#') return;
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── 7. FAQ Accordion ───────────────────────────────────────
+  document.querySelectorAll('.faq-question').forEach((question) => {
+    question.addEventListener('click', () => {
+      const parentItem = question.closest('.faq-item');
+
+      // Close all other items first
+      document.querySelectorAll('.faq-item').forEach((item) => {
+        if (item !== parentItem) {
+          item.classList.remove('open');
+        }
+      });
+
+      // Toggle current
+      parentItem.classList.toggle('open');
+    });
+  });
+
+  // ── 8. Contact Form Handler ────────────────────────────────
+  const contactForm = document.querySelector('form[action="#"]');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = contactForm.querySelector('button[type="submit"], input[type="submit"]');
+      if (!btn) return;
+
+      const originalText = btn.textContent;
+      const originalBg   = btn.style.background;
+      btn.textContent = 'Wird gesendet...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.textContent = 'Nachricht gesendet \u2713';
+        btn.style.background = 'var(--accent, #b08d57)';
+        btn.disabled = false;
+
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = originalBg;
+          contactForm.reset();
+        }, 3000);
+      }, 1200);
+    });
+  }
+
+  // ── 9. Back to Top Button ──────────────────────────────────
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ── 11. Opening Hours: Highlight Today ─────────────────────
+  const hoursTable = document.querySelector('.hours-table');
+  if (hoursTable) {
+    const rows = hoursTable.querySelectorAll('tr');
+    const jsDay = new Date().getDay(); // 0=Sun, 1=Mon ... 6=Sat
+    // Table order: Mo(0) Di(1) Mi(2) Do(3) Fr(4) Sa(5) So(6)
+    // Mapping: JS 1->0, 2->1, 3->2, 4->3, 5->4, 6->5, 0->6
+    const rowIndex = jsDay === 0 ? 6 : jsDay - 1;
+    if (rows[rowIndex]) {
+      rows[rowIndex].classList.add('today');
+    }
+  }
+
+});
